@@ -16,7 +16,6 @@ const resolvers = {
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
 
 const startServer = async () => {
