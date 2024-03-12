@@ -1,0 +1,6 @@
+{
+  "name": "householdaccount",
+  "scripts": {
+    "dev": "cd ./packages/frontend && bun run dev"
+  }
+}
