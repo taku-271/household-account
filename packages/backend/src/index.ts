@@ -1,31 +1,29 @@
-import express from "express";
-import dotenv from "dotenv";
-import { ApolloServer, gql } from "apollo-server-express";
-dotenv.config();
-const port = process.env.PORT || 3000;
+import { createSchema, createYoga } from "graphql-yoga";
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => "Hello World!",
-  },
-};
-
-const app = express();
-
-const startServer = async () => {
-  const apolloServer = new ApolloServer({ typeDefs, resolvers });
-  await apolloServer.start();
-  apolloServer.applyMiddleware({ app });
-};
-
-startServer();
-
-app.listen(port, () => {
-  console.log(`server started at http://localhost:${port}`);
+const yoga = createYoga({
+  landingPage: false,
+  schema: createSchema({
+    typeDefs: `
+      type Query {
+        greeting: String
+      }
+    `,
+    resolvers: {
+      Query: {
+        greeting: () => "Hello from Yoga in a Bun app!",
+      },
+    },
+  }),
 });
+
+const server = Bun.serve({
+  port: process.env.PORT || 3000,
+  fetch: yoga,
+});
+
+console.log(
+  `Server is running on ${new URL(
+    yoga.graphqlEndpoint,
+    `http://${server.hostname}:${server.port}`
+  )}`
+);
