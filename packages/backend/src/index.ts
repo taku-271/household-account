@@ -1,6 +1,7 @@
 import { createSchema, createYoga } from "graphql-yoga";
 
 const yoga = createYoga({
+  landingPage: false,
   schema: createSchema({
     typeDefs: `
       type Query {
@@ -16,6 +17,7 @@ const yoga = createYoga({
 });
 
 const server = Bun.serve({
+  port: process.env.PORT || 3000,
   fetch: yoga,
 });
 
