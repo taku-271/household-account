@@ -9,7 +9,8 @@
       "runtimeExecutable": "bun",
       "restart": true,
       "sourceMaps": true,
-      "args": ["--hot", "./src/index.ts"]
+      "args": ["--hot", "./src/index.ts"],
+      "outputCapture": "std"
     }
   ]
 }
