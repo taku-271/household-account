@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  ha_database:
+    container_name: ha_database
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    env_file:
+      - ./.env
+    restart: always
+    volumes:
+      - ./database/data:/var/lib/mysql
+      - ./database/config/my.cnf:/etc/mysql/conf.d/my.cnf
