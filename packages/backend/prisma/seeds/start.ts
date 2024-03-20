@@ -8,19 +8,10 @@ const main = async () => {
 
   console.log("Seeding database...");
 
-  await prisma.user.deleteMany();
-  await prisma.user.create({
-    data: {
-      email: "admin@admin.com",
-      name: "Admin",
-      password: bcrypt.hashSync("admin", salt),
-    },
-  });
-
   console.log("Database seeded!");
 };
 
-main()
+await main()
   .catch((e) => console.error(e))
   .finally(async () => {
     await prisma.$disconnect();
