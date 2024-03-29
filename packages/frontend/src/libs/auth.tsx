@@ -1,11 +1,8 @@
+import { UserPropsType } from "@/types/User";
 import { GetServerSideProps } from "next";
-import { decode, JWT } from "next-auth/jwt";
+import { decode } from "next-auth/jwt";
 
-type HomeProps = {
-  user: JWT;
-};
-
-export const authServerSideProps: GetServerSideProps<HomeProps> = async (
+export const authServerSideProps: GetServerSideProps<UserPropsType> = async (
   context
 ) => {
   const sessionToken = context.req.cookies["next-auth.session-token"];

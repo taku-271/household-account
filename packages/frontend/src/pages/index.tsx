@@ -1,14 +1,10 @@
 import Head from "next/head";
 import { Button, Heading } from "@yamada-ui/react";
 import { GetServerSidePropsContext } from "next";
-import { JWT } from "next-auth/jwt";
 import { authServerSideProps } from "@/libs/auth";
+import { UserPropsType } from "@/types/User";
 
-type HomeProps = {
-  user: JWT;
-};
-
-export default function Home({ user }: HomeProps) {
+export default function Home({ user }: UserPropsType) {
   return (
     <>
       <Head>
@@ -18,7 +14,7 @@ export default function Home({ user }: HomeProps) {
       </Head>
       <main>
         <Heading as="h1" size="4xl">
-          Hello {user?.name}!
+          Hello {user.name}!
         </Heading>
         <Button onClick={() => (location.href = "http://localhost:3000/")}>
           認証へ戻る
