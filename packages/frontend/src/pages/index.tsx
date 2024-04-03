@@ -1,7 +1,10 @@
 import Head from "next/head";
-import { Heading } from "@yamada-ui/react";
+import { Button, Heading } from "@yamada-ui/react";
+import { GetServerSidePropsContext } from "next";
+import { authServerSideProps } from "@/libs/auth";
+import { UserPropsType } from "@/types/User";
 
-export default function Home() {
+export default function Home({ user }: UserPropsType) {
   return (
     <>
       <Head>
@@ -11,9 +14,15 @@ export default function Home() {
       </Head>
       <main>
         <Heading as="h1" size="4xl">
-          Hello World!
+          Hello {user.name}!
         </Heading>
+        <Button onClick={() => (location.href = "http://localhost:3000/")}>
+          認証へ戻る
+        </Button>
       </main>
     </>
   );
 }
+
+export const getServerSideProps = (context: GetServerSidePropsContext) =>
+  authServerSideProps(context);
