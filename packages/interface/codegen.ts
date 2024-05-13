@@ -4,7 +4,12 @@ import { defineConfig } from "@eddeee888/gcg-typescript-resolver-files";
 const config: CodegenConfig = {
   schema: "./src/schema.graphql",
   generates: {
-    "../backend/src/graphql": defineConfig(),
+    "../backend/src/graphql": defineConfig({
+      typesPluginsConfig: {
+        contextType: "../context#GraphQLContext",
+        federation: true,
+      },
+    }),
     "../frontend/src/graphql/graphql.ts": {
       plugins: [
         "typescript",

@@ -1,19 +1,16 @@
-import { createSchema, createYoga } from "graphql-yoga";
+import { buildSubgraphSchema } from "@apollo/federation";
+import { createYoga } from "graphql-yoga";
+import createContext from "./context";
+import { resolvers } from "./graphql/resolvers.generated";
+import { typeDefs } from "./graphql/typeDefs.generated";
 
 const yoga = createYoga({
   landingPage: false,
-  schema: createSchema({
-    typeDefs: `
-      type Query {
-        greeting: String
-      }
-    `,
-    resolvers: {
-      Query: {
-        greeting: () => "Hello from Yoga in a Bun app!",
-      },
-    },
+  schema: buildSubgraphSchema({
+    typeDefs,
+    resolvers,
   }),
+  context: createContext(),
 });
 
 const server = Bun.serve({

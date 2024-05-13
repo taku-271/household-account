@@ -14,12 +14,12 @@ datasource db {
 }
 
 // Todo: なぜかerdが生成されない
-generator erd {
-  provider = "prisma-erd-generator"
-  theme = "forest"
-  output="ERD.svg"
-  includeRelationFromFields = true
-}
+// generator erd {
+//   provider = "prisma-erd-generator"
+//   theme = "forest"
+//   output="ERD.svg"
+//   includeRelationFromFields = true
+// }
 
 model Expense {
   id        Int       @id @default(autoincrement())
@@ -28,14 +28,14 @@ model Expense {
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   user_id   Int
-  place     Place @relation(fields: [place_id], references: [id])
-  place_id  Int
+  // place     Place @relation(fields: [place_id], references: [id])
+  // place_id  Int
 }
 
-model Place {
-  id        Int       @id @default(autoincrement())
-  name      String
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
-  expenses  Expense[]
-}
+// model Place {
+//   id        Int       @id @default(autoincrement())
+//   name      String
+//   created_at DateTime  @default(now())
+//   updated_at DateTime  @updatedAt
+//   expenses  Expense[]
+// }

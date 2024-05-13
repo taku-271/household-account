@@ -1,0 +1,20 @@
+scalar DateTime
+
+type Expense {
+  id: Int!
+  title: String!
+  amount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+extend type User @key(fields: "id") {
+  id: Int! @external
+  name: String! @external
+  email: String! @external
+  password: String! @external
+  isAdmin: Boolean! @external
+  createdAt: DateTime! @external
+  updatedAt: DateTime! @external
+  expenses: [Expense]!
+}
