@@ -6,6 +6,7 @@
     "seed": "bun run prisma/seeds/start.ts"
   },
   "dependencies": {
+    "@apollo/federation": "^0.38.1",
     "@mermaid-js/mermaid-cli": "^10.8.0",
     "@prisma/client": "^5.11.0",
     "@types/bcrypt": "^5.0.2",
