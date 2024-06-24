@@ -1,10 +1,13 @@
 import Head from "next/head";
-import { Button, Heading } from "@yamada-ui/react";
+import { Box, Button, Heading } from "@yamada-ui/react";
 import { GetServerSidePropsContext } from "next";
 import { authServerSideProps } from "@/libs/auth";
 import { UserPropsType } from "@/types/User";
+import { useRouter } from "next/router";
 
 export default function Home({ user }: UserPropsType) {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -16,9 +19,12 @@ export default function Home({ user }: UserPropsType) {
         <Heading as="h1" size="4xl">
           Hello {user.name}!
         </Heading>
-        <Button onClick={() => (location.href = "http://localhost:3000/")}>
-          認証へ戻る
-        </Button>
+        <Box display="flex" gap="sm">
+          <Button onClick={() => router.push("/calendar")}>カレンダー</Button>
+          <Button onClick={() => (location.href = "http://localhost:3000/")}>
+            認証へ戻る
+          </Button>
+        </Box>
       </main>
     </>
   );
